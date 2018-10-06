@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/nav.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+</head>
+<body class="bg-warning">
+    <div id="sidebar" class="navbar-fixed-top text-center" >
+        <div class="toggle-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul>
+            <li> <h1 class="text-danger">Inventario</h1></li>
+             <li>@Html.ActionLink("Inicio", "Index", "Home") </li>
+            <li>@Html.ActionLink("Cliente", "Index", "Clientes")<li>
+            <li>@Html.ActionLink("Compras", "Index", "Compras")<li>
+            <li>@Html.ActionLink("Producto", "Index", "Productos")</li>
+            <li>@Html.ActionLink("Proveedores", "Index", "Proveedores")<li>
+            <li>@Html.ActionLink("Facturas", "Index", "Facturas")</li>
+        </ul>
+    </div>
+  
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - DERECHOS RESERVADOS</p>
+        </footer>
+    </div>
+
+  
+    @RenderSection("scripts", required: false)
+</body>
+</html>

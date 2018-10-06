@@ -1,0 +1,44 @@
+﻿@model Inventario.Models.Compras
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-danger">Detalles de Compra</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedores.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedores.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-warning" })
+    <button class="btn btn-default">
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </button>
+</p>

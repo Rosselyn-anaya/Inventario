@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Inventario.Models.Compras>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+<h2 class="text-danger">Listado de Compras</h2>
+</center>
+
+<button class="btn btn-default">
+    @Html.ActionLink("+ Nuevo Registro", "Create")
+</button>
+<br ><br>
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr style="background-color:darkturquoise; color:white;">
+        <th class="text-center">
+            @*@Html.DisplayNameFor(model => model.Proveedores.nombre)*@
+            Proveedor
+        </th>
+        <th class="text-center">
+            @*@Html.DisplayNameFor(model => model.usuario.Nombre)*@
+            Usuario
+        </th>
+        <th class="text-center">
+            @*@Html.DisplayNameFor(model => model.fecha)*@
+            Fecha
+        </th>
+        <th class="text-center">
+            Accion
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedores.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-warning" }) 
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

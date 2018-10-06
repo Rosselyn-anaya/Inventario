@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Inventario.Models.usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center class="text-danger">
+    <h2>Listado de Usuarios</h2>
+</center>
+<button class="btn btn-default"> 
+    @Html.ActionLink(" + Nuevo Registro", "Create")
+</button>
+<br ><br>
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr style="background-color:darkturquoise; color:white;">
+        <th>
+            @*@Html.DisplayNameFor(model => model.rol.rol1)*@
+            Rol
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.pass)*@
+            Password
+        </th>
+        <th class="text-center">
+            Accion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.rol.rol1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pass)
+        </td>
+        <td class="text-center">
+            @Html.ActionLink("Editar", "Edit", new { id=item.id },new {@class="btn btn-default block" }) 
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }, new { @class = "btn btn-warning block" }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn btn-danger block" })
+        </td>
+    </tr>
+}
+
+</table>

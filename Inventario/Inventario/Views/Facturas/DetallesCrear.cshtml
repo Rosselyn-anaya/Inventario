@@ -1,0 +1,37 @@
+﻿@model ICollection<Inventario.Models.Detalle_factura>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Productos
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.cantidad</td>
+                    <td>@item.Productos.nombre</td>
+                    <td>@item.Productos.precio</td>
+                    <td>@{double? total = item.cantidad * item.Productos.precio;} @total</td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

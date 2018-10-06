@@ -1,0 +1,50 @@
+﻿@model Inventario.Models.Compras
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">Eliminar</h2>
+
+<h3 class="text-danger">¿Estas seguro que quieres eliminar?</h3>
+<div>
+    <h4 class="text-danger">Compras</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedores.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedores.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <button class="btn btn-default">
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </button>
+    </div>
+    }
+</div>

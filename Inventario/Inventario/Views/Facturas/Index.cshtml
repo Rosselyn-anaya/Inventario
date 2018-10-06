@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Inventario.Models.Factura>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <h2 class="text-danger">Listado de Facturas</h2>
+</center>
+
+<button class="btn btn-default">
+    @Html.ActionLink("+ Nuevo Registro", "Create")
+</button>
+<br><br>
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr style="background-color:darkturquoise; color:white;" >
+        <th class="text-center">
+            Cliente
+        </th>
+        <th class="text-center">
+            Usuario
+        </th>
+        <th class="text-center">
+            Fecha
+        </th>
+       
+        <th class="text-center">
+            Accion
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Clientes.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+           
+           
+          
+            <td class="text-center">
+                @Html.ActionLink("Editar ", "Edit", new { id = item.id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Detalles ", "Details", new { id = item.id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink(" Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+

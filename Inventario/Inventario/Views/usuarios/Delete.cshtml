@@ -1,0 +1,54 @@
+﻿@model Inventario.Models.usuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">Eliminar</h2>
+
+<h3 class="text-danger">¿Estas seguro que quieres eliminar usuario?</h3>
+<div>
+    <h4 class="text-danger">usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.rol.rol1)*@
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol.rol1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pass)*@
+            Password
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pass)
+        </dd>
+
+    </dl>
+    
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+            <button class="btn btn-default">
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </button>
+        </div>
+    }
+</div>
+<h2>@ViewBag.errormsj</h2>

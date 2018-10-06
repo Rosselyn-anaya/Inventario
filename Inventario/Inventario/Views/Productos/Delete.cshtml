@@ -1,0 +1,80 @@
+﻿@model Inventario.Models.Productos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-danger">Eliminar</h2>
+
+<h3 class="text-danger">¿Estas seguro que quieres eliminar?</h3>
+<div>
+    <h4 class="text-danger">Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Categoria.categoria1)*@
+            Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.categoria1)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Marca.nombre)*@
+            Marca
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.existencias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.existencias)
+        </dd>
+
+    
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <button class="btn btn-default">
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </button>
+        </div>
+    }
+</div>

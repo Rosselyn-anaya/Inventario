@@ -1,0 +1,194 @@
+﻿@model Inventario.Models.Factura
+    @using Inventario.Models;
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-danger">Crear Factura</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha,"Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_usuario, "Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_Cliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_Cliente", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_Cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--Detalle Maestro-->
+    <hr />
+    <h3 class="text-center text-danger">Detalles</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-2">
+            <input id="txtCantidad" type="number" class="form-control" placeholder="Cantidad" />
+        </div>
+        <div class="col-md-6">
+            <div class="form-inline">
+                <input id="txtProducto" class="form-control" style="width:73%" type="text" placeholder="Seleccione un producto" disabled />
+                <button type="button" class="btn btn-default glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal"></button>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="AgregarDetalle" class="btn btn-success glyphicon glyphicon-plus">Agregar</button>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            @{
+                IEnumerable<Inventario.Models.Productos> lp = new List<Productos>();
+                lp = ViewBag.lproductos;
+                //para cargarlos en un modal de bootstrad
+            }
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Productos</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Precio
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in lp)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.precio)
+                                    </td>
+                                    <td>
+                                        <button onclick="agregarproducto(@item.id,'@item.nombre',@item.precio)" id="Agregarproducto" type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div id="detalles">
+        @{Html.RenderPartial("detallesCrear");}
+    </div>
+    <br />
+    <hr />
+    <div class="form-group">
+        <div class="col-md-1">
+            <input type="submit" value="Guardar" class="btn btn-warning" />
+        </div>
+    </div>
+
+
+}
+<script>
+    $(document).ready(iniciar);
+
+    var dataDetalle = { id: 0, producto: "", precio: 0, cantidad: 0 };
+
+
+    function iniciar() {
+        $("#AgregarDetalle").click(agregadetalle);
+    }
+
+    function agregadetalle() {
+        dataDetalle.cantidad = $("#txtCantidad").val();
+
+        //realiza la peticion ajax
+        $.ajax({
+            method: "Post",
+            data: {
+                id_producto: dataDetalle.id,
+                cantidad: dataDetalle.cantidad,
+
+            },
+            url: "/Facturas/DetallesCrear",
+            success: function (data) {
+                $("#detalles").html(data);
+                //rest a los controles
+                $("#txtCantidad").html("");
+            },
+            error: function () {
+                alert("ERROR AL AGREGAR DETALLE")
+            }
+
+        });
+    }
+
+    function agregarproducto(id, Nombre, Precio) {
+        //alert("pasando por aqui");
+        //asignando valores de producto al registro del detalle.
+        dataDetalle.id = id;
+        dataDetalle.producto = Nombre;
+        dataDetalle.precio = Precio;
+
+        $("#txtProducto").val(Nombre);//colocando valor a input del producto
+    }
+</script>
+
+
+<div class="btn btn-default">
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

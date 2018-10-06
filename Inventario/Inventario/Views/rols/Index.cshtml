@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Inventario.Models.rol>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2 class="text-danger">Listado de roles</h2>
+</center>
+<button class="btn btn-default">
+    @Html.ActionLink("+ Nuevo Registro", "Create")
+</button>
+<br ><br>
+<table class="table table-bordered table-hover table-striped">
+    <tr style="background-color:darkturquoise; color:white;">
+        <th>
+            @*@Html.DisplayNameFor(model => model.rol1)*@
+            Rol
+        </th>
+
+        <th class="text-center">
+            Accion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr >
+        <td>
+            @Html.DisplayFor(modelItem => item.rol1)
+        </td>
+        <td class="text-center">
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }, new { @class = "btn btn-default" }) 
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

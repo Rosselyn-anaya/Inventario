@@ -1,0 +1,36 @@
+﻿@model Inventario.Models.rol
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">Eliminar</h2>
+
+<h3 class="text-danger">¿Estas seguro que quieres eliminar?</h3>
+<div>
+    <h4 class="text-danger">Rol</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.rol1)*@
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-warning" /> 
+            <button class="btn btn-default">
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </button>
+        </div>
+    }
+</div>
+<h2>@ViewBag.errormsj</h2>

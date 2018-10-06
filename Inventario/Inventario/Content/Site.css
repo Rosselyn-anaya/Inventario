@@ -1,0 +1,76 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif
+}
+
+#sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: rgba(239, 157, 96, 0.68);
+    left: -200px;
+    transition: all 300ms linear;
+}
+
+    #sidebar.active {
+        left: 0px;
+    }
+
+    #sidebar ul li {
+        color: rgba(230,230,230,0.9);
+        list-style: none;
+        padding: 3px;
+        
+        font-size: 20px;
+        /*border-bottom:solid 0.5px #ff0000;*/
+    }
+
+    #sidebar .toggle-btn {
+        position: absolute;
+        left: 230px;
+        top: 20px;
+    }
+
+        #sidebar .toggle-btn span {
+            display: block;
+            width: 30px;
+            height: 5px;
+            background: red;
+            margin: 5px 0px;
+    }
+a {
+    color:red;
+}
+i{
+    color:red;
+}
+#carrousel {
+    background: #00ffff;
+}

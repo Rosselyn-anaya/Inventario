@@ -1,0 +1,29 @@
+﻿@model Inventario.Models.rol
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-danger">Detalles</h2>
+
+<div>
+    <h4 class="text-danger">Rol</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.rol1)*@
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-warning" }) 
+    <button class="btn btn-default">
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </button>
+</p>

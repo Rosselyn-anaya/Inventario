@@ -1,0 +1,83 @@
+﻿@model Inventario.Models.Detalle_factura
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Detalle_factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Factura.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factura.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
